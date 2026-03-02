@@ -19,3 +19,29 @@ sh jenkins.sh
 ---------------------------------------------------
 publicip:8080
 cat /var/lib/jenkins/secrets/initialAdminPassword
+
+
+
+
+
+APP :
+Registration form   ---------
+Enter your first name ----------------
+Enter your first name-------------
+Enter your last name -------------
+Enter your password ---------
+ReEnter your password ------------------
+Enter your email ----------------------
+Enter your mobile ---------
+Enter your address ------------
+Select your gender Male Female  ------------
+Select sports you love cricket football hockey  ------
+Select your Date of Birth 
+dd-mm-yyyy
+
+Select your country 
+... Select your country...
+
+Upload image   ---------  No file chosen
+ RIGISTER     RESET
+

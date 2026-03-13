@@ -1,0 +1,29 @@
+version: '3.8'
+services:
+  python:
+    image: anithaburre/python
+    ports:
+      - "81:80"
+    deploy:
+      replicas: 3
+
+  aws:
+     image: anithaburre/aws
+     ports:
+       - "82:80"
+     deploy:
+       replicas: 3
+
+  devops:
+     image: anithaburre/devops
+     ports:
+        - "83:80"
+     deploy:
+       replicas: 3
+
+  linux:
+     image: anithaburre/linux
+     ports:
+        - "84:80"
+     deploy:
+       replicas: 3

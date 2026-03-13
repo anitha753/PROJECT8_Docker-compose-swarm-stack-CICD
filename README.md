@@ -43,6 +43,90 @@ DOCKER SWARM:
    git config --global user.email "anithaburre@gmail.com"
    git commit -m "index.html and Dockerfile committed" .
 
+++++++++++++++++++++++++++++++++++++++++++++++
+Pipeline script
+-----------
+pipeline {
+    agent any
+    stages {
+        stage(checkoutcode) {
+            steps {
+                git branch: 'main' , url: 'https://github.com/anitha753/PROJECT8_Docker-compose-swarm-stack-CICD.git'
+            }
+        }
+        stage(buildimage) {
+            steps {
+                sh 'docker build -t $image .'
+            }
+        }
+        stage(tagimage) {
+            steps {
+                sh 'docker tag $image $repo '
+            }
+        }
+        stage(dockerlogin) {
+            steps {
+                sh 'docker login -u anithaburre -p $password '
+            }
+        }
+        stage(pushimage) {
+            steps {
+                sh 'docker push $repo '
+            }
+        }
+    }
+}
+  
+  add dockerpassword in jenkins 
+  --------------
+  settings--->manage jenkins-->system->
+  Global properties --->
+  Environment variables --->
+  add variable -->
+  Name:  password
+  Value: dockerhub password
+
+
+DOCKER-COMPOSE SETUP
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+search docker-compose install --->dockerdocs --->
+Docker Compose /Install/ Standalone (Legacy) -> On Linux --->
+curl -SL https://github.com/docker/compose/releases/download/v5.0.1/docker-compose-linux-x86_64 -o /usr/local/bin/docker-compose
+chmod +x /usr/local/bin/docker-compose
+sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
+docker-compose --version
+
+vim docker-compose.yml
+version: '3.8'
+services:
+  python:
+    image: anithaburre/python
+    ports:
+      - "81:80"
+    deploy:
+      replicas: 3
+  aws:
+     image: anithaburre/aws
+     ports:
+       - "82:80"
+     deploy:
+       replicas: 3
+  devops:
+     image: anithaburre/devops
+     ports:
+        - "83:80"
+     deploy:
+       replicas: 3
+  linux:
+     image: anithaburre/linux
+     ports:
+        - "84:80"
+     deploy:
+       replicas: 3
+
+git add docker-com
+
+
 
 
 
